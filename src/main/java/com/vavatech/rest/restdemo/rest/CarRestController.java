@@ -2,6 +2,7 @@ package com.vavatech.rest.restdemo.rest;
 
 import com.vavatech.rest.restdemo.dto.CarDtoResponse;
 import com.vavatech.rest.restdemo.dto.CarRecord;
+import com.vavatech.rest.restdemo.service.CarService;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -23,6 +24,12 @@ import java.util.List;
 @Log4j2
 public class CarRestController {
 
+	private final CarService carService;
+
+	public CarRestController(CarService carService) {
+		this.carService = carService;
+	}
+
 	// Read all - /cars
 	@GetMapping
 	public List<CarRecord> getAllCars() {
@@ -32,12 +39,19 @@ public class CarRestController {
 		);
 	}
 
-	// TODO: handle 404
 	// /cars/{id}
 	@GetMapping(path = "/{id}")
-	public CarRecord getCarById(@PathVariable("id") Integer idik) {
-		System.out.println("id = [" + idik + "]");
-		return new CarRecord("Fiat", "Duży", Year.of(1980));
+	public ResponseEntity<CarRecord> getCarById(@PathVariable("id") Integer idik) {
+		log.info("finding car with id: [{}]", idik);
+
+		var carDto = carService.getCarById(idik.longValue())
+				.map(car -> new CarRecord(car.getBrand(), car.getModel(), car.getYear()))
+				.orElse(null);
+
+		if (carDto == null) {
+			return ResponseEntity.notFound().build();
+		}
+		return ResponseEntity.ok(carDto);
 	}
 
 	// TODO: location header
