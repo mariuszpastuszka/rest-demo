@@ -3,11 +3,13 @@ package com.vavatech.rest.restdemo.rest;
 import com.vavatech.rest.restdemo.dto.CarDtoResponse;
 import com.vavatech.rest.restdemo.dto.CarRecord;
 import lombok.extern.log4j.Log4j2;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.time.Year;
@@ -34,6 +36,8 @@ public class CarRestController {
 		return new CarRecord("Fiat", "Duży", Year.of(1980));
 	}
 
+	// 201
+	@ResponseStatus(HttpStatus.CREATED)
 	@PostMapping
 	public CarDtoResponse createCar(@RequestBody CarRecord car) {
 		log.info("car = [{}]", car);
