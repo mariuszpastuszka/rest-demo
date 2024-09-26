@@ -1,0 +1,8 @@
+POST http://localhost:8080/api/cars
+Content-Type: application/json
+
+{
+  "brand": "Fiat",
+  "model": "Duży",
+  "year": "1980"
+}
