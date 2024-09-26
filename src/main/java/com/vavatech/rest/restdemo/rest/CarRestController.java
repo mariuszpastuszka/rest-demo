@@ -1,8 +1,11 @@
 package com.vavatech.rest.restdemo.rest;
 
+import com.vavatech.rest.restdemo.dto.CarDtoResponse;
 import com.vavatech.rest.restdemo.dto.CarRecord;
+import lombok.extern.log4j.Log4j2;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -11,6 +14,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/cars")
+@Log4j2
 public class CarRestController {
 
 	// Read all - /cars
@@ -27,5 +31,17 @@ public class CarRestController {
 	public CarRecord getCarById(@PathVariable("id") Integer idik) {
 		System.out.println("id = [" + idik + "]");
 		return new CarRecord("Fiat", "Duży", Year.of(1980));
+	}
+
+	@PostMapping
+	public CarDtoResponse createCar(CarRecord car) {
+		log.info("car = [{}]", car);
+
+		return CarDtoResponse.builder()
+				.id(1)
+				.brand(car.brand())
+				.year(car.year())
+				.model(car.model())
+				.build();
 	}
 }
