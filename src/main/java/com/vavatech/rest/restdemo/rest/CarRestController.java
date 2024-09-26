@@ -4,6 +4,8 @@ import com.vavatech.rest.restdemo.dto.CarDtoResponse;
 import com.vavatech.rest.restdemo.dto.CarRecord;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -36,6 +38,7 @@ public class CarRestController {
 		return new CarRecord("Fiat", "Duży", Year.of(1980));
 	}
 
+	// TODO: location header
 	// 201
 	@ResponseStatus(HttpStatus.CREATED)
 	@PostMapping
@@ -48,5 +51,19 @@ public class CarRestController {
 				.year(car.year())
 				.model(car.model())
 				.build();
+	}
+
+	// id = 1 - exists
+	// id = 2 - no entity with this id
+	// ok - 204
+	// not - 404
+	@DeleteMapping(path = "/{id}")
+	public ResponseEntity<Void> deleteCarById(@PathVariable("id") int id) {
+		log.info("trying to delete car with id = [{}]", id);
+		// call service with given id
+		if (id == 1) {
+			return ResponseEntity.noContent().build();
+		}
+		return ResponseEntity.notFound().build();
 	}
 }
