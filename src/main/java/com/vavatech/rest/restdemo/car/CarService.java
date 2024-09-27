@@ -1,6 +1,5 @@
 package com.vavatech.rest.restdemo.car;
 
-import com.vavatech.rest.restdemo.exception.CarNotFoundException;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Service;
 

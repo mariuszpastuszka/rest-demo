@@ -1,12 +1,13 @@
 package com.vavatech.rest.restdemo.exception;
 
-import org.springframework.web.bind.annotation.ExceptionHandler;
+import com.vavatech.rest.restdemo.car.CarNotFoundException;
+import com.vavatech.rest.restdemo.car.CarValidationException;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 @RestControllerAdvice
-public class CarExceptionHandler {
+public class ExceptionHandler {
 
-	@ExceptionHandler({CarNotFoundException.class, CarValidationException.class})
+	@org.springframework.web.bind.annotation.ExceptionHandler({CarNotFoundException.class, CarValidationException.class})
 	public String handleCarNotFoundException(RuntimeException ex) {
 
 		return switch (ex) {

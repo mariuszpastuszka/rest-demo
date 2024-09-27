@@ -1,4 +1,4 @@
-package com.vavatech.rest.restdemo.exception;
+package com.vavatech.rest.restdemo.car;
 
 public class CarValidationException extends RuntimeException {
 
