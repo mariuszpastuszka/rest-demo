@@ -17,7 +17,7 @@ class GithubRestController {
 	}
 
 	@GetMapping("/repositories")
-	String getMyRepositories() {
+	Repository[] getMyRepositories() {
 		log.info("List my repositories");
 		return githubService.getMyRepositories();
 	}

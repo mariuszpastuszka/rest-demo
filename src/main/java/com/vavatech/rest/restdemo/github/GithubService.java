@@ -19,7 +19,7 @@ public class GithubService {
 		log.info("url = [{}]", url);
 	}
 
-	public String getMyRepositories() {
-		return null;
+	public Repository[] getMyRepositories() {
+		return restTemplate.getForObject(url, Repository[].class);
 	}
 }
