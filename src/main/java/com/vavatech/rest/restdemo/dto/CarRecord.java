@@ -1,5 +1,6 @@
 package com.vavatech.rest.restdemo.dto;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Builder;
 
 import java.time.Year;
@@ -8,6 +9,7 @@ import java.time.Year;
 public record CarRecord(
 		String brand,
 		String model,
+		@JsonProperty("production-year")
 		Year year
 ) {
 }
