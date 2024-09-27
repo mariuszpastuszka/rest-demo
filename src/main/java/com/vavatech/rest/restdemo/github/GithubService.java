@@ -22,9 +22,10 @@ public class GithubService {
 		this.url = url;
 
 		log.info("url = [{}]", url);
+		ParameterizedTypeReference<List<String>> typeRef = new ParameterizedTypeReference<List<String>>() {};
 	}
 // TODO: fixme :)
 	public List<Repository> getMyRepositories() {
-		return restTemplate.exchange(url, HttpMethod.GET, null, new ParameterizedTypeReference<List<Repository>>() {});
+		return restTemplate.exchange(url, HttpMethod.GET, null, new ParameterizedTypeReference<List<Repository>>(){}).getBody();
 	}
 }
