@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 @RestControllerAdvice
 public class RestExceptionHandler {
 
-	@ExceptionHandler({CarNotFoundException.class, CarValidationException.class, MethodArgumentNotValidException.class})
+	@ExceptionHandler({CarNotFoundException.class, CarValidationException.class})
 	public String handleCarNotFoundException(Exception ex) {
 
 		return switch (ex) {
