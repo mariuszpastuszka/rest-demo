@@ -7,8 +7,9 @@ import org.springframework.web.client.RestTemplate;
 @Service
 public class GithubService {
 	private final RestTemplate restTemplate;
+	private final String url;
 
-	public GithubService(RestTemplateBuilder restTemplateBuilder) {
+	public GithubService(RestTemplateBuilder restTemplateBuilder, String url) {
 		this.restTemplate = restTemplateBuilder.build();
 	}
 
