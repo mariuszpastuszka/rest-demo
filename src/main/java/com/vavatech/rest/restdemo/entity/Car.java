@@ -1,7 +1,10 @@
 package com.vavatech.rest.restdemo.entity;
 
+import static jakarta.persistence.GenerationType.IDENTITY;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -18,6 +21,7 @@ import java.time.Year;
 public class Car {
 
 	@Id
+	@GeneratedValue(strategy = IDENTITY)
 	Long id;
 
 	String brand;
