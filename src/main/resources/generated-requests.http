@@ -1,9 +1,8 @@
 POST http://localhost:8080/api/cars
 Content-Type: application/json
-Accept: application/xml
 
 {
-  "brand": "Fiat",
+  "brand": "F",
   "model": "Duży",
-  "year": "1980"
+  "production-year": 2980
 }

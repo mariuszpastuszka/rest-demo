@@ -1,5 +1,6 @@
 package com.vavatech.rest.restdemo.car;
 
+import jakarta.validation.Valid;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -49,7 +50,7 @@ class CarRestController {
 	// 201
 	@ResponseStatus(HttpStatus.CREATED)
 	@PostMapping
-	public CarDtoResponse createCar(@RequestBody CarDtoRequest car) {
+	public CarDtoResponse createCar(@RequestBody @Valid CarDtoRequest car) {
 		log.info("car = [{}]", car);
 
 		return CarDtoResponse.builder()
