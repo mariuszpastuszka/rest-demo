@@ -15,4 +15,17 @@ public class CarExceptionHandler {
 			case RuntimeException exception -> "unknown exception:(";
 		};
 	}
+
+//	@ExceptionHandler({CarNotFoundException.class, CarValidationException.class})
+//	public String handleCarNotFoundException(RuntimeException ex) {
+//
+//		if (ex instanceof CarNotFoundException exception) {
+//			return "car not found:( " + exception.getMessage();
+//		} else if (ex instanceof CarValidationException exception) {
+//			return "car validation failed:( " + exception.getMessage();
+//		} else {
+//			return "unknown exception:( " + ex.getMessage();
+//		}
+//	}
 }
+
