@@ -2,6 +2,7 @@ package com.vavatech.rest.restdemo.exception;
 
 import com.vavatech.rest.restdemo.car.CarNotFoundException;
 import com.vavatech.rest.restdemo.car.CarValidationException;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -14,10 +15,30 @@ public class RestExceptionHandler {
 	public ResponseEntity<ExceptionRecord> handleCarNotFoundException(Exception ex) {
 
 		return switch (ex) {
-			case CarNotFoundException exception -> ResponseEntity.notFound().build();
-			case CarValidationException exception -> ResponseEntity.badRequest().build();
-			case MethodArgumentNotValidException exception -> ResponseEntity.badRequest().build();
-			case Exception exception -> ResponseEntity.badRequest().build();
+			case CarNotFoundException exception -> new ResponseEntity<>(
+					ExceptionRecord.builder()
+					.status(HttpStatus.NOT_FOUND.value())
+					.errorMessage(exception.getMessage())
+					.url("")
+					.build(), HttpStatus.NOT_FOUND);
+			case CarValidationException exception -> new ResponseEntity<>(
+					ExceptionRecord.builder()
+							.status(HttpStatus.BAD_REQUEST.value())
+							.errorMessage(exception.getMessage())
+							.url("")
+							.build(), HttpStatus.BAD_REQUEST);
+			case MethodArgumentNotValidException exception -> new ResponseEntity<>(
+					ExceptionRecord.builder()
+							.status(HttpStatus.BAD_REQUEST.value())
+							.errorMessage(exception.getMessage())
+							.url("")
+							.build(), HttpStatus.BAD_REQUEST);
+			case Exception exception -> new ResponseEntity<>(
+					ExceptionRecord.builder()
+							.status(HttpStatus.BAD_REQUEST.value())
+							.errorMessage(exception.getMessage())
+							.url("")
+							.build(), HttpStatus.BAD_REQUEST);
 		};
 	}
 
