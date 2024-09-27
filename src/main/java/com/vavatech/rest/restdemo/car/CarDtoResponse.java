@@ -5,7 +5,7 @@ import lombok.Builder;
 import java.time.Year;
 
 @Builder
-public record CarDtoResponse(
+record CarDtoResponse(
 		long id,
 		String brand,
 		String model,

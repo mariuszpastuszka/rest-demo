@@ -6,10 +6,14 @@ import lombok.Builder;
 import java.time.Year;
 
 @Builder
-public record CarRecord(
+record CarDtoRequest(
 		String brand,
 		String model,
 		@JsonProperty("production-year")
 		Year year
 ) {
+	CarDtoRequest {
+		brand = brand.toUpperCase();
+		model = model.toUpperCase();
+	}
 }

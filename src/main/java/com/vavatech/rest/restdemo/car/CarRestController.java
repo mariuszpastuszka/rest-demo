@@ -29,27 +29,27 @@ class CarRestController {
 
 	// Read all - /cars
 	@GetMapping
-	public List<CarRecord> getAllCars() {
+	public List<CarDtoRequest> getAllCars() {
 		return List.of(
-				new CarRecord("Fiat", "Duży", Year.of(1980)),
-				new CarRecord("Fiat", "Mały", Year.of(1980))
+				new CarDtoRequest("Fiat", "Duży", Year.of(1980)),
+				new CarDtoRequest("Fiat", "Mały", Year.of(1980))
 		);
 	}
 
 	// /cars/{id}
 	@GetMapping(path = "/{id}")
-	public CarRecord getCarById(@PathVariable("id") Integer idik) {
+	public CarDtoRequest getCarById(@PathVariable("id") Integer idik) {
 		log.info("finding car with id: [{}]", idik);
 
 		var car = carService.getCarById(idik.longValue());
-		return new CarRecord(car.getBrand(), car.getModel(), car.getYear());
+		return new CarDtoRequest(car.getBrand(), car.getModel(), car.getYear());
 	}
 
 	// TODO: location header
 	// 201
 	@ResponseStatus(HttpStatus.CREATED)
 	@PostMapping
-	public CarDtoResponse createCar(@RequestBody CarRecord car) {
+	public CarDtoResponse createCar(@RequestBody CarDtoRequest car) {
 		log.info("car = [{}]", car);
 
 		return CarDtoResponse.builder()
@@ -75,7 +75,7 @@ class CarRestController {
 	}
 
 	@PutMapping(path = "/{id}")
-	public CarDtoResponse updateCarById(@PathVariable("id") int id, @RequestBody CarRecord car) {
+	public CarDtoResponse updateCarById(@PathVariable("id") int id, @RequestBody CarDtoRequest car) {
 		log.info("trying to update car with id = [{}]", id);
 
 		// call service
