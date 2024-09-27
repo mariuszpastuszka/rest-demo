@@ -1,8 +1,5 @@
-package com.vavatech.rest.restdemo.rest;
+package com.vavatech.rest.restdemo.car;
 
-import com.vavatech.rest.restdemo.dto.CarDtoResponse;
-import com.vavatech.rest.restdemo.dto.CarRecord;
-import com.vavatech.rest.restdemo.service.CarService;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -22,11 +19,11 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/cars")
 @Log4j2
-public class CarRestController {
+class CarRestController {
 
 	private final CarService carService;
 
-	public CarRestController(CarService carService) {
+	CarRestController(CarService carService) {
 		this.carService = carService;
 	}
 

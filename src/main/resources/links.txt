@@ -1,0 +1,2 @@
+https://www.archunit.org/getting-started
+https://github.com/mariuszpastuszka/rest-examples

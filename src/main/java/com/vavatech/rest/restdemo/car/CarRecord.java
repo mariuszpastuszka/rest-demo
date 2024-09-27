@@ -1,4 +1,4 @@
-package com.vavatech.rest.restdemo.dto;
+package com.vavatech.rest.restdemo.car;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Builder;

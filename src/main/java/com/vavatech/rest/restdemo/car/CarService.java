@@ -1,17 +1,15 @@
-package com.vavatech.rest.restdemo.service;
+package com.vavatech.rest.restdemo.car;
 
-import com.vavatech.rest.restdemo.entity.Car;
 import com.vavatech.rest.restdemo.exception.CarNotFoundException;
-import com.vavatech.rest.restdemo.repository.CarRepository;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Service;
 
 @Service
 @Log4j2
-public class CarService {
+class CarService {
 	private final CarRepository carRepository;
 
-	public CarService(CarRepository carRepository) {
+		CarService(CarRepository carRepository) {
 		this.carRepository = carRepository;
 	}
 

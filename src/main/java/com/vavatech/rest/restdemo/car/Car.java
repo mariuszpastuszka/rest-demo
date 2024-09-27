@@ -1,4 +1,4 @@
-package com.vavatech.rest.restdemo.entity;
+package com.vavatech.rest.restdemo.car;
 
 import static jakarta.persistence.GenerationType.IDENTITY;
 

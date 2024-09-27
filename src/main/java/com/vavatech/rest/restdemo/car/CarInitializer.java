@@ -1,12 +1,12 @@
-package com.vavatech.rest.restdemo.component;
+package com.vavatech.rest.restdemo.car;
 
-import com.vavatech.rest.restdemo.entity.Car;
-import com.vavatech.rest.restdemo.repository.CarRepository;
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 
 import java.time.Year;
 
+@Profile("dev")
 @Component
 public class CarInitializer implements CommandLineRunner {
 
