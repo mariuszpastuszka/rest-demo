@@ -1,6 +1,7 @@
 package com.vavatech.rest.restdemo.service;
 
 import com.vavatech.rest.restdemo.entity.Car;
+import com.vavatech.rest.restdemo.exception.CarNotFoundException;
 import com.vavatech.rest.restdemo.repository.CarRepository;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Service;
@@ -16,8 +17,9 @@ public class CarService {
 		this.carRepository = carRepository;
 	}
 
-	public Optional<Car> getCarById(Long id) {
+	public Car getCarById(Long id) {
 		log.info("finding car with id: [{}]", id);
-		return carRepository.findById(id);
+		return carRepository.findById(id)
+				.orElseThrow(() -> new CarNotFoundException("No car with id: " + id));
 	}
 }
