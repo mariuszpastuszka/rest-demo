@@ -41,17 +41,11 @@ public class CarRestController {
 
 	// /cars/{id}
 	@GetMapping(path = "/{id}")
-	public ResponseEntity<CarRecord> getCarById(@PathVariable("id") Integer idik) {
+	public CarRecord getCarById(@PathVariable("id") Integer idik) {
 		log.info("finding car with id: [{}]", idik);
 
-		var carDto = carService.getCarById(idik.longValue())
-				.map(car -> new CarRecord(car.getBrand(), car.getModel(), car.getYear()))
-				.orElse(null);
-
-		if (carDto == null) {
-			return ResponseEntity.notFound().build();
-		}
-		return ResponseEntity.ok(carDto);
+		var car = carService.getCarById(idik.longValue());
+		return new CarRecord(car.getBrand(), car.getModel(), car.getYear());
 	}
 
 	// TODO: location header

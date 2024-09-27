@@ -6,8 +6,6 @@ import com.vavatech.rest.restdemo.repository.CarRepository;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Service;
 
-import java.util.Optional;
-
 @Service
 @Log4j2
 public class CarService {
